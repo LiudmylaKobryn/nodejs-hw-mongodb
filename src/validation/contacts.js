@@ -24,6 +24,9 @@ export const createContactSchema = extendedJoi.object({
     .valid('work', 'home', 'personal')
     .default('personal')
     .required(),
+  userId: extendedJoi.string().required().forbidden().messages({
+    'any.required': 'UserId is required',
+  }),
 });
 
 export const updateContactSchema = extendedJoi.object({

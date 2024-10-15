@@ -6,6 +6,7 @@ import { ENV_VARS } from './constants/index.js';
 import { notFoundMiddleware } from './middlewares/notFound.js';
 import { errorHandlerMiddleware } from './middlewares/errorHandler.js';
 import router from './routers/index.js';
+import cookieParser from 'cookie-parser';
 
 const PORT = Number(env(ENV_VARS.PORT, 3000));
 
@@ -19,6 +20,7 @@ export const setupServer = () => {
   );
 
   app.use(cors());
+
   app.use(
     pino({
       transport: {
@@ -26,6 +28,8 @@ export const setupServer = () => {
       },
     }),
   );
+
+  app.use(cookieParser());
 
   app.get('/', (req, res) => {
     res.json({
