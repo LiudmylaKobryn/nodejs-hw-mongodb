@@ -8,15 +8,16 @@ export const getAllContacts = async ({
   sortOrder = SORT_ORDER.ASC,
   sortBy = '_id',
   filter = {},
+  userId,
 }) => {
   const limit = perPage;
   const skip = (page - 1) * perPage;
-  const contactsQuery = contactsModel.find();
+  const contactsQuery = contactsModel.find({ userId });
   if (filter.contactType) {
     contactsQuery.where('contactType').equals(filter.contactType);
   }
   const contactsCount = await contactsModel
-    .find()
+    .find({ userId })
     .merge(contactsQuery)
     .countDocuments();
 
