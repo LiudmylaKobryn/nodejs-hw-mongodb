@@ -2,7 +2,7 @@ import express from 'express';
 import pino from 'pino-http';
 import cors from 'cors';
 import { env } from './utils/env.js';
-import { ENV_VARS } from './constants/index.js';
+import { ENV_VARS, UPLOAD_DIR } from './constants/index.js';
 import { notFoundMiddleware } from './middlewares/notFound.js';
 import { errorHandlerMiddleware } from './middlewares/errorHandler.js';
 import router from './routers/index.js';
@@ -38,6 +38,8 @@ export const setupServer = () => {
   });
 
   app.use(router);
+
+  app.use('/uploads', express.static(UPLOAD_DIR));
 
   app.use(notFoundMiddleware);
 

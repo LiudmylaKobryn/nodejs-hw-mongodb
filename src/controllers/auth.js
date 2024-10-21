@@ -1,6 +1,13 @@
-import { logoutUser, registerUser, loginUser } from '../services/auth.js';
+import {
+  logoutUser,
+  registerUser,
+  loginUser,
+  requestResetToken,
+  resetPassword,
+} from '../services/auth.js';
 import { ONE_DAY } from '../constants/index.js';
 import { refreshUserSession } from '../services/auth.js';
+import createHttpError from 'http-errors';
 
 export const registerUserController = async (req, res, next) => {
   try {
@@ -95,6 +102,35 @@ export const refreshUserSessionController = async (req, res, next) => {
     });
   } catch (error) {
     console.error('Error refreshing token:', error);
+    next(error);
+  }
+};
+
+export const requestResetEmailController = async (req, res, next) => {
+  try {
+    await requestResetToken(req.body.email);
+    res.status(200).json({
+      status: 200,
+      message: 'Reset password email has been successfully sent.',
+      data: {},
+    });
+  } catch (error) {
+    throw createHttpError(
+      500,
+      'Failed to send the email, please try again later.',
+    );
+  }
+};
+
+export const resetPasswordController = async (req, res, next) => {
+  try {
+    await resetPassword(req.body);
+    res.status(200).json({
+      status: 200,
+      message: 'Password has been successfully reset.',
+      data: {},
+    });
+  } catch (error) {
     next(error);
   }
 };
