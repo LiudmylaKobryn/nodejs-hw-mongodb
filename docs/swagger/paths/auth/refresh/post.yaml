@@ -1,0 +1,53 @@
+tags:
+  - Auth
+summary: Refresh user's session
+operationId: refreshSession
+description: "Refreshing user's session"
+security:
+  - bearerAuth: []
+responses:
+  '200':
+    description: Refresh user's session
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully refreshed a session!
+            data:
+              type: object
+              required:
+                - accessToken
+              properties:
+                accessToken:
+                  type: string
+                  example: wN9Pcq9IOk3EGQ5IgKgeUv2fMw3NCigAxBa5Dvdo
+  '400':
+    description: Session not found
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+          properties:
+            status:
+              type: integer
+              example: 400
+            message:
+              type: string
+              example: Session not found
+  '401':
+    $ref: ../../../components/repsponses/401.yaml
+  '404':
+    $ref: ../../../components/repsponses/404_user.yaml

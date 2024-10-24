@@ -1,0 +1,66 @@
+tags:
+  - Auth
+summary: Reset user's password
+operationId: resetPwd
+description: "Reset user's password"
+security:
+  - bearerAuth: []
+requestBody:
+  content:
+    aplication/json:
+      schema:
+        type: object
+        required:
+          - token
+          - password
+        properties:
+          token:
+            description: 'A token from request reset password email'
+            type: string
+            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NzA0NzcxMDkwODIwZmY1ODYyNTI2NTMiLCJlbWFpbCI6ImVkd2FyZC5rb3plbHNreUBpY2xvdWQuY29tIiwiaWF0IjoxNzI5MzU3MDc1LCJleHAiOjE3MjkzNTc5NzV9.uNTKYEvPhQ86VrtZoxXsll3lUFVJYc_9fIY9CMkP0Wc
+          password:
+            type: string
+            description: "New user's password"
+responses:
+  '200':
+    description: Reset users password
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Password has been successfully reset.
+            data:
+              type: object
+  '401':
+    description: Unauthorized
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 401
+            message:
+              type: string
+              example: Token is expired or invalid.
+            data:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: Token is expired or invalid.

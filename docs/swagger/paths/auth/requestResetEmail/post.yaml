@@ -1,0 +1,62 @@
+tags:
+  - Auth
+summary: Request reset email
+operationId: requestEmail
+description: 'Requesting reset email'
+security:
+  - bearerAuth: []
+requestBody:
+  content:
+    aplication/json:
+      schema:
+        type: object
+        required:
+          - email
+        properties:
+          email:
+            description: "User's email"
+            type: string
+            example: dmytro3@example.com
+responses:
+  '200':
+    description: Refresh user's session
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Reset password email has been successfully sent
+            data:
+              type: object
+  '500':
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 500
+            message:
+              type: string
+              example: Failed to send the email, please try again later.
+            data:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: Failed to send the email, please try again later.

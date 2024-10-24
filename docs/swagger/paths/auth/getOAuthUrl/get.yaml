@@ -1,0 +1,56 @@
+tags:
+  - Auth
+summary: Get Google OAuthUrl
+operationId: getOAuthUrl
+description: 'Get Google OAuth Url'
+security:
+  - bearerAuth: []
+responses:
+  '200':
+    description: Successfully get Google OAuth url
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully get Google OAuth url
+            data:
+              type: object
+              properties:
+                url:
+                  type: string
+                  example: https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&response_type=code&client_id=253657900811-mm1ahhmcn79h3fc8p4q17rvnvk5f0s6j.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fconfirm-google-auth
+  '401':
+    description: Unauthorized error
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 401
+            message:
+              type: string
+              example: Unauthorized
+            data:
+              type: object
+              required:
+                - message
+              properties:
+                message:
+                  type: string
+                  example: 'Unauthorized'

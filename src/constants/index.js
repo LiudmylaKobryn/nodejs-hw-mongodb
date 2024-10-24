@@ -39,3 +39,10 @@ export const CLOUDINARY = {
 };
 
 export const ENABLE_CLOUDINARY = 'ENABLE_CLOUDINARY';
+
+export const GOOGLE_OAUTH = {
+  GOOGLE_AUTH_CLIENT_ID: 'GOOGLE_AUTH_CLIENT_ID',
+  GOOGLE_AUTH_CLIENT_SECRET: 'GOOGLE_AUTH_CLIENT_SECRET',
+};
+
+export const SWAGGER_PATH = path.join(process.cwd(), 'docs', 'swagger.json');

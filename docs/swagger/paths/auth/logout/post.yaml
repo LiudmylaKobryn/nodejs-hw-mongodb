@@ -1,0 +1,37 @@
+tags:
+  - Auth
+summary: Logout user
+operationId: logoutUser
+description: 'Logout with user'
+security:
+  - bearerAuth: []
+responses:
+  '204':
+    description: 'Logout user'
+  '404':
+    $ref: ../../../components/repsponses/404_user.yaml
+  '401':
+    description: Unauthorized error
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 401
+            message:
+              type: string
+              example: Unauthorized
+            data:
+              type: object
+              required:
+                - message
+              properties:
+                message:
+                  type: string
+                  example: 'Unauthorized'
