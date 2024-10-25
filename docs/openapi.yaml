@@ -13,7 +13,7 @@ tags:
     description: Operations with authorization
 servers:
   - url: http://localhost:3000
-  - url: https://nodejs-hw-mongodb-uxog.onrender.com/
+  - url: https://nodejs-hw-mongodb-uxog.onrender.com
 paths:
   /contacts:
     get:
