@@ -7,7 +7,7 @@ security:
   - bearerAuth: []
 requestBody:
   content:
-    aplication/json:
+    application/json:
       schema:
         type: object
         required:
