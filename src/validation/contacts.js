@@ -42,7 +42,7 @@ export const updateContactSchema = extendedJoi.object({
   email: extendedJoi.string().email().messages({
     'string.email': 'Invalid email format',
   }),
-  isFavourite: extendedJoi.boolean(),
+  isFavourite: extendedJoi.boolean().truthy('true').falsy('false'),
   contactType: extendedJoi
     .string()
     .valid('work', 'home', 'personal')
