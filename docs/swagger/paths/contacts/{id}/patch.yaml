@@ -48,7 +48,7 @@ responses:
   '200':
     description: Update a student
     content:
-      multipart/form-data:
+      application/json:
         schema:
           type: object
           required:
