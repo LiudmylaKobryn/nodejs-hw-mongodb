@@ -320,7 +320,7 @@
           "Contacts"
         ],
         "summary": "Update contact",
-        "operationId": "updateontact",
+        "operationId": "updateContact",
         "description": "Update a contact",
         "security": [
           {
@@ -343,9 +343,6 @@
             "multipart/form-data": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "id"
-                ],
                 "properties": {
                   "name": {
                     "description": "Contact's name",
@@ -390,7 +387,7 @@
           "200": {
             "description": "Update a student",
             "content": {
-              "multipart/form-data": {
+              "application/json": {
                 "schema": {
                   "type": "object",
                   "required": [
